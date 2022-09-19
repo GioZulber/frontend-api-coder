@@ -8,7 +8,6 @@
 
 ## Setup
 - Clonas el repositorio y ejecutas el siguiente comando `npm run dev`
-- Link de vercel: [Ecommerce app-coder](https://ecommerce-app-coder.vercel.app/ "Ecommerce app-coder")
-## Backend
-
 - Link de vercel: [Tienda ](https://frontend-api-coder.vercel.app/ "Tienda ")
+## Backend
+- Link de vercel: [Ecommerce app-coder](https://ecommerce-app-coder.vercel.app/ "Ecommerce app-coder")
