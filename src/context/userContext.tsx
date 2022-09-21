@@ -1,8 +1,8 @@
-import { createContext, useContext, useState, useEffect, useReducer } from 'react';
-import { ContextProps, ProviderProps, ActionType } from './contextProps';
+import { createContext, useContext, useEffect, useReducer, useState } from 'react';
+import { ActionType, ContextProps, ProviderProps } from './contextProps';
 // import { loginUser, registerUser } from '../components/User/userService';
-import { UserLogin, UserRegister } from '../components/User/User';
 import axios from 'axios';
+import { UserLogin, UserRegister } from '../components/User/User';
 
 const API = import.meta.env.VITE_NODE_API;
 
@@ -40,6 +40,7 @@ export const UserProvider = ({ children }: ProviderProps) => {
 
 	const getUserInfo = async () => {
 		const token = localStorage.getItem('user');
+
 		if (token) {
 			try {
 				const res = await axios.get(`${API}/user`, {
@@ -88,6 +89,7 @@ export const UserProvider = ({ children }: ProviderProps) => {
 					return res;
 				})
 				.catch((err) => {
+					console.log(err);
 					return err.response;
 				});
 			await getUserInfo();

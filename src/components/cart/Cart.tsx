@@ -1,10 +1,10 @@
 import { Box, Button, Flex, Heading, Spinner } from '@chakra-ui/react';
-import { CartItem } from './CartItem';
-import { useCart } from '../../context/cartContext';
-import { Product } from '../Products/Product';
-import { confirmCartOrder } from './cartService';
 import { toast } from 'react-toastify';
+import { useCart } from '../../context/cartContext';
 import { useUser } from '../../context/userContext';
+import { Product } from '../Products/Product';
+import { CartItem } from './CartItem';
+import { confirmCartOrder } from './cartService';
 
 export const Cart = () => {
 	const { user } = useUser();
@@ -32,7 +32,7 @@ export const Cart = () => {
 					<Spinner size='xl' color='green.500' />
 				</Box>
 			) : cart?.products.length > 0 ? (
-				cart?.products.map((item: Product) => <CartItem key={item.id} item={item} />)
+				cart?.products.map((item: Product) => <CartItem key={item.productId} item={item} />)
 			) : (
 				<>
 					<Heading>No hay productos en el carrito</Heading>

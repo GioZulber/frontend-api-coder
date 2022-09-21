@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { ProviderProps } from './contextProps';
-import { CartType } from '../components/cart/CartTypes';
-import { useUser } from './userContext';
 import { createCart } from '../components/cart/cartService';
+import { CartType } from '../components/cart/CartTypes';
+import { ProviderProps } from './contextProps';
+import { useUser } from './userContext';
 
 const CartContext = createContext({} as any);
 
@@ -18,8 +18,6 @@ export const CartProvider = ({ children }: ProviderProps) => {
 				try {
 					const set = await createCart(user)
 						.then((res) => {
-							console.log(res?.data);
-
 							setCart(res?.data.newCart.data);
 							return res?.data;
 						})

@@ -58,7 +58,7 @@ export const updateProduct = async (product: Product) => {
 	try {
 		if (token) {
 			const response = await axios.put<Product>(
-				`${API}/api/products/${product.id}`,
+				`${API}/api/products/${product.productId}`,
 				product,
 				{
 					headers: {

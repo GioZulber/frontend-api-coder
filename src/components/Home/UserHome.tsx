@@ -1,12 +1,10 @@
-import { Button, Flex, Heading, Link, Stack, Text } from '@chakra-ui/react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import { User } from '../User/User';
+import { Button, Flex, Heading, Stack, Text } from '@chakra-ui/react';
+import { Link as RouterLink } from 'react-router-dom';
+import { useUser } from '../../context/userContext';
 
-interface UserHomeProps {
-	user: User;
-}
+export const UserHome = () => {
+	const { user } = useUser();
 
-export const UserHome = ({ user }: UserHomeProps) => {
 	return (
 		<Stack p={20} display='flex' direction={'column'} align='center' justify='center'>
 			<Flex
@@ -16,15 +14,22 @@ export const UserHome = ({ user }: UserHomeProps) => {
 				p='8'
 				borderRadius={8}
 				flexDir='column'
-				align='center'>
+				align='center'
+			>
 				<Heading fontSize='4xl'>Home</Heading>
 				<Text fontSize='2xl'>Bienvenido {user?.name}</Text>
 				<Flex justify='center' alignItems='stretch' mt={4}>
+					{user?.role === 'admin' ? (
+						<Button as={RouterLink} colorScheme='teal' to='/post-products' m='1'>
+							<Text fontWeight='bold'>Cargar productos</Text>
+						</Button>
+					) : (
+						<Button as={RouterLink} colorScheme='teal' to='/cart' m='1'>
+							<Text fontWeight='bold'>Ver carrito</Text>
+						</Button>
+					)}
 					<Button as={RouterLink} colorScheme='teal' to='/products' m='1'>
 						<Text fontWeight='bold'>Ver productos</Text>
-					</Button>
-					<Button as={RouterLink} colorScheme='teal' to='/cart' m='1'>
-						<Text fontWeight='bold'>Ver carrito</Text>
 					</Button>
 				</Flex>
 			</Flex>

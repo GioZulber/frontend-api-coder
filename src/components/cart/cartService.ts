@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Product } from '../Products/Product';
-import { Cart } from './Cart';
 import { User } from '../User/User';
+import { Cart } from './Cart';
 
 const API = import.meta.env.VITE_NODE_API;
 
@@ -50,16 +50,6 @@ export const createCart = async (user: User) => {
 // 	});
 // 	return res;
 // };
-
-// export const getProductsInCart = async (id: number) => {
-// 	const response = await axios.get(`${API}/api/carts/${id}/products`, {
-// 		headers: headers,
-// 	});
-// 	console.log(response);
-
-// 	return response;
-// };
-
 export const addProductToCart = async (id: number, product: Product) => {
 	const token = localStorage.getItem('user');
 	try {
@@ -83,14 +73,18 @@ export const addProductToCart = async (id: number, product: Product) => {
 
 export const removeProductFromCart = async (id: number, product: Product) => {
 	const token = localStorage.getItem('user');
+
 	try {
 		if (token) {
-			const response = await axios.delete(`${API}/api/carts/${id}/products/${product.id}`, {
-				headers: {
-					'Content-Type': 'application/json',
-					authorization: token,
-				},
-			});
+			const response = await axios.delete(
+				`${API}/api/carts/${id}/products/${product.productId}`,
+				{
+					headers: {
+						'Content-Type': 'application/json',
+						authorization: token,
+					},
+				}
+			);
 			console.log(response);
 			return response;
 		}

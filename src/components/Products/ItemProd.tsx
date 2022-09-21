@@ -1,13 +1,13 @@
+import { Box, Button, Flex, Icon, Image, Text, Tooltip, useColorModeValue } from '@chakra-ui/react';
 import { MouseEventHandler } from 'react';
-import { Flex, Box, Image, useColorModeValue, Icon, Tooltip, Button, Text } from '@chakra-ui/react';
 import { FiShoppingCart } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../context/userContext';
+import { Cart } from '../cart/Cart';
+import { addProductToCart } from '../cart/cartService';
+import { CartType } from '../cart/CartTypes';
 import { Product } from './Product';
 import { deleteProduct, updateProduct } from './productService';
-import { useNavigate } from 'react-router-dom';
-import { addProductToCart } from '../cart/cartService';
-import { Cart } from '../cart/Cart';
-import { CartType } from '../cart/CartTypes';
 
 interface Props {
 	product: Product;
@@ -17,7 +17,7 @@ export const ProductCard = (props: Props) => {
 	const { product } = props;
 	const { user } = useUser();
 
-	const id = product.id;
+	const id = product.productId;
 
 	// const onClickUpdate = async (product: Product) => {
 
@@ -74,7 +74,8 @@ export const ProductCard = (props: Props) => {
 						bg='white'
 						placement={'top'}
 						color={'gray.800'}
-						fontSize={'1.2em'}>
+						fontSize={'1.2em'}
+					>
 						<Button display={'flex'} onClick={() => onClickAddToCart(product)}>
 							<Icon as={FiShoppingCart} h={7} w={7} alignSelf={'center'} />
 						</Button>
@@ -96,7 +97,8 @@ export const ProductCard = (props: Props) => {
 							variant={'solid'}
 							colorScheme={'teal'}
 							size={'sm'}
-							m={'1'}>
+							m={'1'}
+						>
 							Actualizar
 						</Button>
 						<Button
@@ -104,7 +106,8 @@ export const ProductCard = (props: Props) => {
 							variant={'solid'}
 							colorScheme={'teal'}
 							size={'sm'}
-							m={'1'}>
+							m={'1'}
+						>
 							Borrar
 						</Button>
 					</Flex>
